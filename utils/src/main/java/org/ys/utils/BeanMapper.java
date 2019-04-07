@@ -19,7 +19,7 @@ public class BeanMapper {
     }
 
     /**
-     * ????Dozer????????????.
+     * 基于Dozer转换对象的类型.
      */
     public static <T> T map(Object source, Class<T> destinationClass) {
         if (null == source)
@@ -28,7 +28,7 @@ public class BeanMapper {
     }
 
     /**
-     * ????Dozer???Collection?ж????????.
+     * 基于Dozer转换Collection中对象的类型.
      */
     @SuppressWarnings("rawtypes")
     public static <T> List<T> mapList(Collection sourceList, Class<T> destinationClass) {

@@ -27,7 +27,7 @@
     values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
     #{nickName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
     #{autograph,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
-    #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP})
+    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
   </insert>
   <update id="updateByPrimaryKey" parameterType="org.ys.project.entity.User">
     update ys_user
@@ -36,8 +36,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       autograph = #{autograph,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+      updated_at = CURRENT_TIMESTAMP
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="UserResultMap">

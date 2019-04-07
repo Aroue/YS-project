@@ -20,27 +20,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
+    public List<User> getAllUser() {
         return this.ysUserMapper.selectAll();
     }
 
     @Override
-    public User get(Integer id) {
+    public User getUser(Integer id) {
         return this.ysUserMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public Boolean create(User user) {
+    public Boolean addUser(User user) {
         return this.ysUserMapper.insert(user) > 0;
     }
 
     @Override
-    public Boolean edit(User user) {
+    public Boolean updateUser(User user) {
         return this.ysUserMapper.updateByPrimaryKey(user) > 0;
     }
 
     @Override
-    public Boolean delete(User user) {
+    public Boolean deleteUser(User user) {
         return this.ysUserMapper.deleteByPrimaryKey(user.getId()) > 0;
     }
 }

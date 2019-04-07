@@ -11,4 +11,5 @@ public interface ArticleService {
     Boolean create(Article user);
     Boolean edit(Article user);
     Boolean delete(Article user);
+
 }

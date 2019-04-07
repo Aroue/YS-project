@@ -6,9 +6,15 @@ import java.util.List;
 
 public interface UserService {
 
-    List<User> getAll();
-    User get(Integer id);
-    Boolean create(User user);
-    Boolean edit(User user);
-    Boolean delete(User user);
+    List<User> getAllUser();
+
+    User getUser(Integer id);
+
+    Boolean addUser(User user);
+
+    Boolean updateUser(User user);
+
+    Boolean deleteUser(User user);
+
+
 }

@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean deleteUser(User user) {
-        return this.ysUserMapper.deleteByPrimaryKey(user.getId()) > 0;
+    public Boolean deleteUser(Integer id) {
+        return this.ysUserMapper.deleteByPrimaryKey(id) > 0;
     }
 }

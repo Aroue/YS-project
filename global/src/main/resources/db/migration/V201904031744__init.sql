@@ -10,7 +10,8 @@ CREATE TABLE `ys_user`
   `email`                  varchar(255) COMMENT '电子邮件.',
   `created_at`             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `unique_user_name` (`user_name`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='用户表';
 

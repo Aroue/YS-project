@@ -5,10 +5,10 @@ import org.ys.utils.dto.RequestDTO;
 
 import javax.validation.constraints.NotNull;
 
-public class UserA02InputDTO extends RequestDTO {
+public class UserA03InputDTO extends RequestDTO {
 
-    @NotNull(message = "用户名不能为空")
-    private String userName;
+    @NotNull(message = "ID不能为空")
+    private Integer id;
 
     @NotNull(message = "用户昵称不能为空")
     private String nickName;
@@ -22,13 +22,13 @@ public class UserA02InputDTO extends RequestDTO {
 
     private String email;
 
-    @ApiModelProperty(value = "用户名", name = "userName", dataType = "String")
-    public String getUserName() {
-        return userName;
+    @ApiModelProperty(value = "ID", name = "id", dataType = "Integer")
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @ApiModelProperty(value = "昵称", name = "nickName", dataType = "String")

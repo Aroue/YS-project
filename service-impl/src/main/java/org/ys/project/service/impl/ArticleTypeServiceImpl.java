@@ -19,28 +19,29 @@ public class ArticleTypeServiceImpl implements ArticleTypeService {
         this.articleTypeMapper = articleTypeMapper;
     }
 
+
     @Override
-    public List<ArticleType> getAll() {
-        return null;
+    public List<ArticleType> getAllArticleType() {
+        return articleTypeMapper.selectAll();
     }
 
     @Override
-    public ArticleType get(Integer id) {
-        return null;
+    public ArticleType getArticleType(Integer id) {
+        return articleTypeMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public Boolean create(ArticleType user) {
-        return null;
+    public Boolean addArticleType(ArticleType articleType) {
+        return articleTypeMapper.insert(articleType) > 0;
     }
 
     @Override
-    public Boolean edit(ArticleType user) {
-        return null;
+    public Boolean updateArticleType(ArticleType articleType) {
+        return articleTypeMapper.updateByPrimaryKey(articleType) > 0;
     }
 
     @Override
-    public Boolean delete(ArticleType user) {
-        return null;
+    public Boolean deleteArticleType(Integer id) {
+        return articleTypeMapper.deleteByPrimaryKey(id) > 0;
     }
 }

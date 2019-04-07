@@ -11,6 +11,9 @@ public class ArticleType {
 
     private Date updatedAt;
 
+    public ArticleType() {
+    }
+
     public ArticleType(Integer id, String title, Date createdAt, Date updatedAt) {
         this.id = id;
         this.title = title;

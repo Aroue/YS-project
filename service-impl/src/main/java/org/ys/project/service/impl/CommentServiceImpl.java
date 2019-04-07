@@ -21,27 +21,22 @@ public class CommentServiceImpl implements CommentService {
 
 
     @Override
-    public List<Comment> getAll() {
-        return null;
+    public List<Comment> getAllComment() {
+        return commentMapper.selectAll();
     }
 
     @Override
-    public Comment get(Integer id) {
-        return null;
+    public Comment getComment(Integer id) {
+        return commentMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public Boolean create(Comment user) {
-        return null;
+    public Boolean addComment(Comment comment) {
+        return commentMapper.insert(comment) > 0;
     }
 
     @Override
-    public Boolean edit(Comment user) {
-        return null;
-    }
-
-    @Override
-    public Boolean delete(Comment user) {
-        return null;
+    public Boolean deleteComment(Integer id) {
+        return commentMapper.deleteByPrimaryKey(id) > 0;
     }
 }

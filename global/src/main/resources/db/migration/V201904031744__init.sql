@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS `ys_user`;
 CREATE TABLE `ys_user`
 (
   `id`                     int(11)      NOT NULL AUTO_INCREMENT,
-  `user_name`               varchar(255) NOT NULL COMMENT '用户名.',
+  `user_name`              varchar(255) NOT NULL COMMENT '用户名.',
   `nick_name`              varchar(20)  NOT NULL COMMENT '昵称.',
   `password`               varchar(20)  NOT NULL COMMENT '密码.',
   `phone`                  varchar(20)  COMMENT '电话.',
@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS `ys_article`;
 CREATE TABLE `ys_article`
 (
   `id`                     int(11)      NOT NULL AUTO_INCREMENT,
-  `user_id`                     int(11)      NOT NULL COMMENT '用户ID',
+  `user_id`                int(11)      NOT NULL COMMENT '用户ID',
   `title`                  varchar(255) NOT NULL COMMENT '标题.',
   `content`                MEDIUMTEXT   NOT NULL COMMENT ' 内容.',
   `type_id`                int(11)      COMMENT '文章类型ID.',

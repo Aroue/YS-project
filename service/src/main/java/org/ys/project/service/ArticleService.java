@@ -6,10 +6,18 @@ import java.util.List;
 
 public interface ArticleService {
 
-    List<Article> getAll();
-    Article get(Integer id);
-    Boolean create(Article user);
-    Boolean edit(Article user);
-    Boolean delete(Article user);
+    List<Article> getAllArticle();
+
+    Article getArticle(Integer id);
+
+    Boolean addArticle(Article article);
+
+    Boolean updateArticle(Article article);
+
+    Boolean deleteArticle(Integer id);
+
+    List<Article> selectArticleByTypeId(Integer id);
+
+    List<Article> selectArticleByUserId(Integer id);
 
 }

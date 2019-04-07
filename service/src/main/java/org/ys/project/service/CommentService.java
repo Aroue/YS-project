@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface CommentService {
 
-    List<Comment> getAll();
-    Comment get(Integer id);
-    Boolean create(Comment user);
-    Boolean edit(Comment user);
-    Boolean delete(Comment user);
+    List<Comment> getAllComment();
+
+    Comment getComment(Integer id);
+
+    Boolean addComment(Comment comment);
+
+    Boolean deleteComment(Integer id);
 }

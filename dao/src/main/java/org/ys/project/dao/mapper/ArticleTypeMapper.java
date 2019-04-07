@@ -1,5 +1,6 @@
 package org.ys.project.dao.mapper;
 
+import org.ys.project.entity.Article;
 import org.ys.project.entity.ArticleType;
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface ArticleTypeMapper {
     List<ArticleType> selectAll();
 
     int updateByPrimaryKey(ArticleType record);
+
 }

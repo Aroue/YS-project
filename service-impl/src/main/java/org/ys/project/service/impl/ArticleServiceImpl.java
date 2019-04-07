@@ -21,27 +21,37 @@ public class ArticleServiceImpl implements ArticleService {
 
 
     @Override
-    public List<Article> getAll() {
-        return null;
+    public List<Article> getAllArticle() {
+        return articleMapper.selectAll();
     }
 
     @Override
-    public Article get(Integer id) {
-        return null;
+    public Article getArticle(Integer id) {
+        return articleMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public Boolean create(Article user) {
-        return null;
+    public Boolean addArticle(Article article) {
+        return articleMapper.insert(article) > 0;
     }
 
     @Override
-    public Boolean edit(Article user) {
-        return null;
+    public Boolean updateArticle(Article article) {
+        return articleMapper.updateByPrimaryKey(article) > 0;
     }
 
     @Override
-    public Boolean delete(Article user) {
-        return null;
+    public Boolean deleteArticle(Integer id) {
+        return articleMapper.deleteByPrimaryKey(id) > 0;
+    }
+
+    @Override
+    public List<Article> selectArticleByTypeId(Integer id) {
+        return articleMapper.selectArticleByTypeId(id);
+    }
+
+    @Override
+    public List<Article> selectArticleByUserId(Integer id) {
+        return articleMapper.selectArticleByUserId(id);
     }
 }

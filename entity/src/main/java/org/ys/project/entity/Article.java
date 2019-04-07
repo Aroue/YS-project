@@ -5,9 +5,9 @@ import java.util.Date;
 public class Article {
     private Integer id;
 
-    private Integer user_id;
+    private Integer userId;
 
-    private Integer type_id;
+    private Integer typeId;
 
     private String title;
 
@@ -17,10 +17,13 @@ public class Article {
 
     private Date updatedAt;
 
-    public Article(Integer id, Integer user_id, Integer type_id, String title, String content, Date createdAt, Date updatedAt) {
+    public Article() {
+    }
+
+    public Article(Integer id, Integer userId, Integer typeId, String title, String content, Date createdAt, Date updatedAt) {
         this.id = id;
-        this.user_id = user_id;
-        this.type_id = type_id;
+        this.userId = userId;
+        this.typeId = typeId;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
@@ -35,20 +38,20 @@ public class Article {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getType_id() {
-        return type_id;
+    public Integer getTypeId() {
+        return typeId;
     }
 
-    public void setType_id(Integer type_id) {
-        this.type_id = type_id;
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 
     public String getTitle() {

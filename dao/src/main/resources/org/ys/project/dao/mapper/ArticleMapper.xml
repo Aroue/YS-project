@@ -22,15 +22,14 @@
     </selectKey>
     insert into ys_article (user_id, type_id, title,content,
       created_at, updated_at)
-    values (#{user_id,jdbcType=INTEGER}, #{type_id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
-      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP})
+    values (#{userId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
   </insert>
   <update id="updateByPrimaryKey" parameterType="org.ys.project.entity.Article">
     update ys_article
     set title = #{title,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+      updated_at = CURRENT_TIMESTAMP
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ArticleResultMap">
@@ -41,5 +40,16 @@
   <select id="selectAll" resultMap="ArticleResultMap">
     select *
     from ys_article
+  </select>
+  <select id="selectArticleByTypeId" parameterType="java.lang.Integer" resultMap="ArticleResultMap">
+    select *
+    from ys_article
+    where type_id =  #{typeId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectArticleByUserId" parameterType="java.lang.Integer" resultMap="ArticleResultMap">
+    select *
+    from ys_article
+    where user_id =  #{userId,jdbcType=INTEGER}
   </select>
 </mapper>

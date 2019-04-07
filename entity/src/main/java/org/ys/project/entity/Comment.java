@@ -6,9 +6,9 @@ public class Comment {
 
     private Integer id;
 
-    private Integer article_id;
+    private Integer articleId;
 
-    private Integer parent_id;
+    private Integer parentId;
 
     private String content;
 
@@ -16,10 +16,13 @@ public class Comment {
 
     private Date updatedAt;
 
-    public Comment(Integer id, Integer article_id, Integer parent_id, String content, Date createdAt, Date updatedAt) {
+    public Comment() {
+    }
+
+    public Comment(Integer id, Integer articleId, Integer parentId, String content, Date createdAt, Date updatedAt) {
         this.id = id;
-        this.article_id = article_id;
-        this.parent_id = parent_id;
+        this.articleId = articleId;
+        this.parentId = parentId;
         this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -33,20 +36,20 @@ public class Comment {
         this.id = id;
     }
 
-    public Integer getArticle_id() {
-        return article_id;
+    public Integer getArticleId() {
+        return articleId;
     }
 
-    public void setArticle_id(Integer article_id) {
-        this.article_id = article_id;
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
 
-    public Integer getParent_id() {
-        return parent_id;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setParent_id(Integer parent_id) {
-        this.parent_id = parent_id;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public String getContent() {

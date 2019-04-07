@@ -18,13 +18,12 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into ys_article_type (title,created_at, updated_at)
-    values (#{title,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP})
+    values (#{title,jdbcType=VARCHAR}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
   </insert>
   <update id="updateByPrimaryKey" parameterType="org.ys.project.entity.ArticleType">
     update ys_article_type
     set title = #{title,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+      updated_at = CURRENT_TIMESTAMP
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ArticleTypeResultMap">

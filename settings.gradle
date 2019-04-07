@@ -1,0 +1,17 @@
+rootProject.name = 'project'
+
+include 'auth:auth-dao'
+findProject(':auth:auth-dao')?.name = 'auth-dao'
+include 'auth:auth-service'
+findProject(':auth:auth-service')?.name = 'auth-service'
+include 'auth:auth-service-impl'
+findProject(':auth:auth-service-impl')?.name = 'auth-service-impl'
+include 'auth:auth-entity'
+findProject(':auth:auth-entity')?.name = 'auth-entity'
+include 'global'
+include 'utils'
+include 'entity'
+include 'dao'
+include 'service'
+include 'service-impl'
+

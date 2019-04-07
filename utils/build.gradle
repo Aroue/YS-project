@@ -1,0 +1,21 @@
+ext {
+    springBootVersion = SPRING_BOOT_VERSION
+}
+
+group 'org.ys'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.github.SilenceDut:jpinyin:v1.0'
+    compile "com.github.dozermapper:dozer-core:6.1.0"
+    compile SPRING_CONTEXT
+    compile SPRING_WEB
+    compile SWAGGER_CORE
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '8.5.27'
+}

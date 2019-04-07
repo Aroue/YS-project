@@ -36,6 +36,14 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getNickName() {
         return nickName;
     }
@@ -50,14 +58,6 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return userName;
-    }
-
-    public void setUsername(String userName) {
-        this.userName = userName;
     }
 
     public String getPassword() {

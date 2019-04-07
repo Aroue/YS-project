@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 public class UserA02InputDTO extends RequestDTO {
 
-    @NotNull(message = "用户名不能为空")
+//    @NotNull(message = "用户名不能为空")
     private String userName;
 
     @NotNull(message = "用户昵称不能为空")

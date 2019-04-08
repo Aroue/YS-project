@@ -14,6 +14,8 @@ public interface ArticleMapper {
 
     int updateByPrimaryKey(Article record);
 
+    int deleteArticleByUserId(Integer id);
+
     List<Article> selectArticleByTypeId(Integer id);
 
     List<Article> selectArticleByUserId(Integer id);

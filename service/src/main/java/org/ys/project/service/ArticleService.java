@@ -16,6 +16,8 @@ public interface ArticleService {
 
     Boolean deleteArticle(Integer id);
 
+    Boolean deleteArticleByUserId(Integer id);
+
     List<Article> selectArticleByTypeId(Integer id);
 
     List<Article> selectArticleByUserId(Integer id);

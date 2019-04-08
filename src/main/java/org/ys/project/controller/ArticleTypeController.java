@@ -17,7 +17,9 @@ import org.ys.project.service.ArticleService;
 import org.ys.project.service.ArticleTypeService;
 import org.ys.utils.BeanMapper;
 import org.ys.utils.JSONResult;
+import org.ys.utils.Message;
 import org.ys.utils.controller.APIController;
+import org.ys.utils.exception.BusinessException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -50,37 +52,43 @@ public class ArticleTypeController extends APIController {
 
     @ApiOperation(value = "添加文章类型", notes = "添加文章类型", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A02")
-    public JSONResult A02(@Valid ArticleTypeA02InputDTO input) {
+    public JSONResult A02(@Valid ArticleTypeA02InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         ArticleType articleType = BeanMapper.map(input,ArticleType.class);
         boolean success = articleTypeService.addArticleType(articleType);
 
         if (success)
-            jsonResult.setMessage("新增文章类型成功");
+            jsonResult.setMessage(new Message("CM.DB.CREATE_SUCCESS", "文章类型"));
+        else
+            throw new BusinessException(new Message("CM.DB.CREATE_FAILED", "文章类型"));
         return jsonResult;
     }
 
     @ApiOperation(value = "修改文章类型", notes = "修改文章类型", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A03")
-    public JSONResult A03(@Valid ArticleTypeA03InputDTO input) {
+    public JSONResult A03(@Valid ArticleTypeA03InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         ArticleType articleType = BeanMapper.map(input,ArticleType.class);
         boolean success = articleTypeService.updateArticleType(articleType);
 
         if (success)
-            jsonResult.setMessage("修改文章类型成功");
+            jsonResult.setMessage(new Message("CM.DB.UPDATE_SUCCESS", "文章类型"));
+        else
+            throw new BusinessException(new Message("CM.DB.UPDATE_FAILED", "文章类型"));
         return jsonResult;
     }
 
     @ApiOperation(value = "删除文章类型", notes = "删除文章类型", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A04")
-    public JSONResult A04(@Valid ArticleTypeA04InputDTO input) {
+    public JSONResult A04(@Valid ArticleTypeA04InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         boolean deleteArticleType = articleTypeService.deleteArticleType(input.getId());
         boolean deleteArticle = articleService.deleteArticle(input.getId());
 
         if (deleteArticleType && deleteArticle)
-            jsonResult.setMessage("删除文章类型成功");
+            jsonResult.setMessage(new Message("CM.DB.DELETE_SUCCESS", "文章类型"));
+        else
+            throw new BusinessException(new Message("CM.DB.DELETE_FAILED", "文章类型"));
         return jsonResult;
     }
 }

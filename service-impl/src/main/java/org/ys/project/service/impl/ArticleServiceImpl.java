@@ -46,6 +46,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Boolean deleteArticleByUserId(Integer id) {
+        return articleMapper.deleteArticleByUserId(id) > 0;
+    }
+
+    @Override
     public List<Article> selectArticleByTypeId(Integer id) {
         return articleMapper.selectArticleByTypeId(id);
     }

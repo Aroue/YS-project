@@ -6,6 +6,7 @@
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="article_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="parent_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="created_at" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="updated_at" javaType="java.util.Date" jdbcType="TIMESTAMP" />
@@ -19,18 +20,17 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ys_comment (article_id, parent_id, content,
+    insert into ys_comment (article_id, parent_id,user_id, content,
       created_at, updated_at)
-    values (#{article_id,jdbcType=INTEGER}, #{parent_id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
-      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP})
+    values (#{article_id,jdbcType=INTEGER}, #{parent_id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
+    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
   </insert>
   <update id="updateByPrimaryKey" parameterType="org.ys.project.entity.Comment">
     update ys_comment
     set article_id = #{article_id,jdbcType=INTEGER},
       parent_id = #{parent_id,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+      updated_at = CURRENT_TIMESTAMP
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="CommentResultMap">

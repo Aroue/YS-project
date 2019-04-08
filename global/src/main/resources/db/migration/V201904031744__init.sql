@@ -48,13 +48,15 @@ DROP TABLE IF EXISTS `ys_comment`;
 CREATE TABLE `ys_comment`
 (
   `id`                     int(11)      NOT NULL AUTO_INCREMENT,
+  `user_id`                int(11)      NOT NULL COMMENT '用户ID',
   `parent_id`              int(11)      COMMENT '上级评论ID.',
-  `article_id`             int(11)      COMMENT '文章ID.',
+  `article_id`             int(11)      NOT NULL COMMENT '文章ID.',
   `content`                varchar(255) NOT NULL COMMENT '内容.',
   `created_at`             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `article_id` (`article_id`)
+  KEY `article_id` (`article_id`),
+  KEY `user_id` (`user_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='评论表';
 

@@ -10,6 +10,8 @@ public class Comment {
 
     private Integer parentId;
 
+    private Integer userId;
+
     private String content;
 
     private Date createdAt;
@@ -19,10 +21,11 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(Integer id, Integer articleId, Integer parentId, String content, Date createdAt, Date updatedAt) {
+    public Comment(Integer id, Integer articleId, Integer parentId, Integer userId, String content, Date createdAt, Date updatedAt) {
         this.id = id;
         this.articleId = articleId;
         this.parentId = parentId;
+        this.userId = userId;
         this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -50,6 +53,14 @@ public class Comment {
 
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getContent() {

@@ -2,6 +2,7 @@ package org.ys.project.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.ys.project.dto.ArticleType.ArticleTypeA02InputDTO;
 import org.ys.project.dto.ArticleType.ArticleTypeA03InputDTO;
 import org.ys.project.dto.ArticleType.ArticleTypeA04InputDTO;
+import org.ys.project.dto.ArticleType.ArticleTypeBaseDTO;
 import org.ys.project.entity.ArticleType;
 import org.ys.project.service.ArticleService;
 import org.ys.project.service.ArticleTypeService;
@@ -30,6 +32,7 @@ public class ArticleTypeController extends APIController {
 
     private ArticleService articleService;
 
+    @Autowired
     public ArticleTypeController(ArticleTypeService articleTypeService, ArticleService articleService) {
         this.articleTypeService = articleTypeService;
         this.articleService = articleService;
@@ -38,10 +41,10 @@ public class ArticleTypeController extends APIController {
     @ApiOperation(value = "获取全部文章类型", notes = "获取全部文章类型", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.GET, value = "/A01")
     public JSONResult A01() {
-        JSONResult<List<ArticleType>> jsonResult = new JSONResult<>();
-        List<ArticleType> articleTypeList = articleTypeService.getAllArticleType();
+        JSONResult<List<ArticleTypeBaseDTO>> jsonResult = new JSONResult<>();
+        List<ArticleTypeBaseDTO> articleTypeBaseDTOList = BeanMapper.mapList(articleTypeService.getAllArticleType(),ArticleTypeBaseDTO.class);
 
-        jsonResult.setData(articleTypeList);
+        jsonResult.setData(articleTypeBaseDTOList);
         return jsonResult;
     }
 

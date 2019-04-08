@@ -2,6 +2,7 @@ package org.ys.project.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ public class ArticleController extends APIController {
 
     private ArticleService articleService;
 
+    @Autowired
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
     }
@@ -32,10 +34,10 @@ public class ArticleController extends APIController {
     @ApiOperation(value = "获取全部文章", notes = "获取全部文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.GET, value = "/A01")
     public JSONResult A01() {
-        JSONResult<List<Article>> jsonResult = new JSONResult<>();
-        List<Article> articleList = articleService.getAllArticle();
+        JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
+        List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.getAllArticle(),ArticleBaseDTO.class);
 
-        jsonResult.setData(articleList);
+        jsonResult.setData(articleBaseDTOList);
         return jsonResult;
     }
 
@@ -77,20 +79,20 @@ public class ArticleController extends APIController {
     @ApiOperation(value = "获取某分类的全部文章", notes = "获取某分类的全部文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.GET, value = "/A05")
     public JSONResult A05(@Valid ArticleA05InputDTO input) {
-        JSONResult<List<Article>> jsonResult = new JSONResult<>();
-        List<Article> articleList = articleService.selectArticleByTypeId(input.getTypeId());
+        JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
+        List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByTypeId(input.getTypeId()),ArticleBaseDTO.class);
 
-        jsonResult.setData(articleList);
+        jsonResult.setData(articleBaseDTOList);
         return jsonResult;
     }
 
     @ApiOperation(value = "获取某用户的全部文章", notes = "获取某用户的全部文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.GET, value = "/A06")
     public JSONResult A06(@Valid ArticleA06InputDTO input) {
-        JSONResult<List<Article>> jsonResult = new JSONResult<>();
-        List<Article> articleList = articleService.selectArticleByUserId(input.getUserId());
+        JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
+        List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByUserId(input.getUserId()),ArticleBaseDTO.class);
 
-        jsonResult.setData(articleList);
+        jsonResult.setData(articleBaseDTOList);
         return jsonResult;
     }
 }

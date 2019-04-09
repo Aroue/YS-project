@@ -1,22 +1,19 @@
-package org.ys.project.dto.Article;
+package org.ys.project.dto.Comment;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModelProperty;
-import org.ys.utils.dto.RequestDTO;
 import org.ys.utils.dto.ResponseDTO;
 
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-public class ArticleBaseDTO extends ResponseDTO {
+public class CommentBaseDTO extends ResponseDTO {
 
     private Integer id;
 
     private Integer userId;
 
-    private Integer typeId;
+    private Integer parentId;
 
-    private String title;
+    private Integer articleId;
 
     private String content;
 
@@ -42,24 +39,21 @@ public class ArticleBaseDTO extends ResponseDTO {
         this.userId = userId;
     }
 
-
-    public Integer getTypeId() {
-        return typeId;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
-
-    public String getTitle() {
-        return title;
+    public Integer getArticleId() {
+        return articleId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
-
 
     public String getContent() {
         return content;

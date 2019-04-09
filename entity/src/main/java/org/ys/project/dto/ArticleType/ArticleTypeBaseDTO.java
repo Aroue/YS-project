@@ -3,11 +3,12 @@ package org.ys.project.dto.ArticleType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import org.ys.utils.dto.RequestDTO;
+import org.ys.utils.dto.ResponseDTO;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-public class ArticleTypeBaseDTO extends RequestDTO {
+public class ArticleTypeBaseDTO extends ResponseDTO {
 
     private Integer id;
 

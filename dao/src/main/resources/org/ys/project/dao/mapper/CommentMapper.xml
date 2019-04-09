@@ -22,13 +22,13 @@
     </selectKey>
     insert into ys_comment (article_id, parent_id,user_id, content,
       created_at, updated_at)
-    values (#{article_id,jdbcType=INTEGER}, #{parent_id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
+    values (#{articleId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
   </insert>
   <update id="updateByPrimaryKey" parameterType="org.ys.project.entity.Comment">
     update ys_comment
-    set article_id = #{article_id,jdbcType=INTEGER},
-      parent_id = #{parent_id,jdbcType=INTEGER},
+    set article_id = #{articleId,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
       updated_at = CURRENT_TIMESTAMP
     where id = #{id,jdbcType=INTEGER}
@@ -41,5 +41,10 @@
   <select id="selectAll" resultMap="CommentResultMap">
     select *
     from ys_comment
+  </select>
+  <select id="getArticleComments" parameterType="java.lang.Integer" resultMap="CommentResultMap">
+    select *
+    from ys_comment
+    where article_id = #{articleId,jdbcType=INTEGER}
   </select>
 </mapper>

@@ -13,4 +13,6 @@ public interface CommentService {
     Boolean addComment(Comment comment);
 
     Boolean deleteComment(Integer id);
+
+    List<Comment> getArticleComments(Integer id);
 }

@@ -39,4 +39,9 @@ public class CommentServiceImpl implements CommentService {
     public Boolean deleteComment(Integer id) {
         return commentMapper.deleteByPrimaryKey(id) > 0;
     }
+
+    @Override
+    public List<Comment> getArticleComments(Integer id) {
+        return commentMapper.getArticleComments(id);
+    }
 }

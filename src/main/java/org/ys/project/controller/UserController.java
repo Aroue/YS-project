@@ -97,11 +97,7 @@ public class UserController extends APIController {
 
     @ApiOperation(value = "用户登陆", notes = "用户登陆", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A06")
-    public JSONResult A06(@Valid UserA06InputDTO input) throws BusinessException {
-
-        System.out.println("---------------------------------------------");
-        System.out.println(input.getUserName() +" " + input.getPassword());
-        System.out.println("---------------------------------------------");
+    public JSONResult A06(@Valid @RequestBody UserA06InputDTO input) throws BusinessException {
 
         JSONResult<UserA01DTO> jsonResult = new JSONResult<>();
         User user = userService.userLogin(input.getUserName(), input.getPassword());

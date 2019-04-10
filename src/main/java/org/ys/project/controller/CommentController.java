@@ -3,10 +3,7 @@ package org.ys.project.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.ys.project.dto.Comment.CommentA02InputDTO;
 import org.ys.project.dto.Comment.CommentA03InputDTO;
 import org.ys.project.dto.Comment.CommentA04InputDTO;
@@ -47,7 +44,7 @@ public class CommentController extends APIController {
 
     @ApiOperation(value = "获取某文章全部评论", notes = "获取某文章全部评论", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.GET, value = "/A02")
-    public JSONResult A02(@Valid CommentA02InputDTO input) {
+    public JSONResult A02(@Valid @RequestBody CommentA02InputDTO input) {
         JSONResult<List<CommentBaseDTO>> jsonResult = new JSONResult<>();
         List<CommentBaseDTO> commentBaseDTOList = BeanMapper.mapList(commentService.getArticleComments(input.getArticleId()),CommentBaseDTO.class);
 
@@ -57,7 +54,7 @@ public class CommentController extends APIController {
 
     @ApiOperation(value = "添加评论", notes = "添加评论", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A03")
-    public JSONResult A03(@Valid CommentA03InputDTO input) {
+    public JSONResult A03(@Valid @RequestBody CommentA03InputDTO input) {
         JSONResult jsonResult = new JSONResult();
         Comment comment = BeanMapper.map(input,Comment.class);
         boolean success = commentService.addComment(comment);
@@ -72,7 +69,7 @@ public class CommentController extends APIController {
 
     @ApiOperation(value = "删除评论", notes = "删除评论", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A04")
-    public JSONResult A04(@Valid CommentA04InputDTO input) throws BusinessException {
+    public JSONResult A04(@Valid @RequestBody CommentA04InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         boolean success = commentService.deleteComment(input.getId());
 

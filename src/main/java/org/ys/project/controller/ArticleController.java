@@ -4,10 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.ys.project.dto.Article.*;
 import org.ys.project.entity.Article;
 import org.ys.project.service.ArticleService;
@@ -45,7 +42,7 @@ public class ArticleController extends APIController {
 
     @ApiOperation(value = "添加文章", notes = "添加文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A02")
-    public JSONResult A02(@Valid ArticleA02InputDTO input) throws BusinessException {
+    public JSONResult A02(@Valid @RequestBody ArticleA02InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         Article article = BeanMapper.map(input, Article.class);
         boolean success = articleService.addArticle(article);
@@ -59,7 +56,7 @@ public class ArticleController extends APIController {
 
     @ApiOperation(value = "修改文章", notes = "修改文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A03")
-    public JSONResult A03(@Valid ArticleA03InputDTO input) throws BusinessException {
+    public JSONResult A03(@Valid @RequestBody ArticleA03InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         Article article = BeanMapper.map(input, Article.class);
         boolean success = articleService.updateArticle(article);
@@ -73,7 +70,7 @@ public class ArticleController extends APIController {
 
     @ApiOperation(value = "删除文章", notes = "删除文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A04")
-    public JSONResult A04(@Valid ArticleA04InputDTO input) throws BusinessException {
+    public JSONResult A04(@Valid @RequestBody ArticleA04InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         boolean success = articleService.deleteArticle(input.getId());
 
@@ -86,7 +83,7 @@ public class ArticleController extends APIController {
 
     @ApiOperation(value = "获取某分类的全部文章", notes = "获取某分类的全部文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.GET, value = "/A05")
-    public JSONResult A05(@Valid ArticleA05InputDTO input) {
+    public JSONResult A05(@Valid @RequestBody ArticleA05InputDTO input) {
         JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
         List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByTypeId(input.getTypeId()),ArticleBaseDTO.class);
 
@@ -96,7 +93,7 @@ public class ArticleController extends APIController {
 
     @ApiOperation(value = "获取某用户的全部文章", notes = "获取某用户的全部文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.GET, value = "/A06")
-    public JSONResult A06(@Valid ArticleA06InputDTO input) {
+    public JSONResult A06(@Valid @RequestBody ArticleA06InputDTO input) {
         JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
         List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByUserId(input.getUserId()),ArticleBaseDTO.class);
 
@@ -106,7 +103,7 @@ public class ArticleController extends APIController {
 
     @ApiOperation(value = "删除某用户文章", notes = "删除某用户文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A07")
-    public JSONResult A07(@Valid ArticleA06InputDTO input) throws BusinessException {
+    public JSONResult A07(@Valid @RequestBody ArticleA06InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         boolean success = articleService.deleteArticleByUserId(input.getUserId());
 

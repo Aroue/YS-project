@@ -4,10 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.ys.project.dto.ArticleType.ArticleTypeA02InputDTO;
 import org.ys.project.dto.ArticleType.ArticleTypeA03InputDTO;
 import org.ys.project.dto.ArticleType.ArticleTypeA04InputDTO;
@@ -52,7 +49,7 @@ public class ArticleTypeController extends APIController {
 
     @ApiOperation(value = "添加文章类型", notes = "添加文章类型", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A02")
-    public JSONResult A02(@Valid ArticleTypeA02InputDTO input) throws BusinessException {
+    public JSONResult A02(@Valid @RequestBody ArticleTypeA02InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         ArticleType articleType = BeanMapper.map(input,ArticleType.class);
         boolean success = articleTypeService.addArticleType(articleType);
@@ -66,7 +63,7 @@ public class ArticleTypeController extends APIController {
 
     @ApiOperation(value = "修改文章类型", notes = "修改文章类型", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A03")
-    public JSONResult A03(@Valid ArticleTypeA03InputDTO input) throws BusinessException {
+    public JSONResult A03(@Valid @RequestBody ArticleTypeA03InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         ArticleType articleType = BeanMapper.map(input,ArticleType.class);
         boolean success = articleTypeService.updateArticleType(articleType);
@@ -80,7 +77,7 @@ public class ArticleTypeController extends APIController {
 
     @ApiOperation(value = "删除文章类型", notes = "删除文章类型", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A04")
-    public JSONResult A04(@Valid ArticleTypeA04InputDTO input) throws BusinessException {
+    public JSONResult A04(@Valid @RequestBody ArticleTypeA04InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         boolean deleteArticleType = articleTypeService.deleteArticleType(input.getId());
         boolean deleteArticle = articleService.deleteArticle(input.getId());

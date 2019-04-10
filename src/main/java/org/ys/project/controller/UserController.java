@@ -42,7 +42,7 @@ public class UserController extends APIController {
 
     @ApiOperation(value = "新增用户", notes = "新增用户，用户注册", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A02")
-    public JSONResult A02(@Valid UserA02InputDTO input) throws BusinessException {
+    public JSONResult A02(@Valid @RequestBody UserA02InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         User user = BeanMapper.map(input, User.class);
         boolean success = userService.addUser(user);
@@ -56,7 +56,7 @@ public class UserController extends APIController {
 
     @ApiOperation(value = "用户信息更新", notes = "用户信息更新", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A03")
-    public JSONResult A03(@Valid UserA03InputDTO input) throws BusinessException {
+    public JSONResult A03(@Valid @RequestBody UserA03InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         User user = BeanMapper.map(input, User.class);
         boolean success = userService.updateUser(user);
@@ -70,7 +70,7 @@ public class UserController extends APIController {
 
     @ApiOperation(value = "删除用户", notes = "删除用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.POST, value = "/A04")
-    public JSONResult A04(@Valid UserA04A05InputDTO input) throws BusinessException {
+    public JSONResult A04(@Valid @RequestBody UserA04A05InputDTO input) throws BusinessException {
         JSONResult jsonResult = new JSONResult<>();
         boolean success = userService.deleteUser(input.getId());
 
@@ -83,7 +83,7 @@ public class UserController extends APIController {
 
     @ApiOperation(value = "获取用户信息", notes = "获取用户信息", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.GET, value = "/A05")
-    public JSONResult A05(@Valid UserA04A05InputDTO input) throws BusinessException {
+    public JSONResult A05(@Valid @RequestBody UserA04A05InputDTO input) throws BusinessException {
         JSONResult<User> jsonResult = new JSONResult<>();
         User user = userService.getUser(input.getId());
 

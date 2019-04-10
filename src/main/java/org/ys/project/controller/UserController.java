@@ -4,10 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.ys.project.dto.User.UserA02InputDTO;
-import org.ys.project.dto.User.UserA01DTO;
-import org.ys.project.dto.User.UserA03InputDTO;
-import org.ys.project.dto.User.UserA04A05InputDTO;
+import org.ys.project.dto.User.*;
 import org.ys.project.entity.User;
 import org.ys.project.service.UserService;
 import org.ys.utils.BeanMapper;
@@ -92,6 +89,27 @@ public class UserController extends APIController {
 
         if (user != null) {
             jsonResult.setData(user);
+        } else {
+            throw new BusinessException(new Message("CM.DB.NO_RESULT", "用户"));
+        }
+        return jsonResult;
+    }
+
+    @ApiOperation(value = "用户登陆", notes = "用户登陆", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "/A06")
+    public JSONResult A06(@Valid UserA06InputDTO input) throws BusinessException {
+
+        System.out.println("---------------------------------------------");
+        System.out.println(input.getUserName() +" " + input.getPassword());
+        System.out.println("---------------------------------------------");
+
+        JSONResult<UserA01DTO> jsonResult = new JSONResult<>();
+        User user = userService.userLogin(input.getUserName(), input.getPassword());
+
+        UserA01DTO userA01DTO = BeanMapper.map(user, UserA01DTO.class);
+
+        if (user != null) {
+            jsonResult.setData(userA01DTO);
         } else {
             throw new BusinessException(new Message("CM.DB.NO_RESULT", "用户"));
         }

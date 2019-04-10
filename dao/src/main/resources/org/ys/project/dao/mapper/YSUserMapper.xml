@@ -48,4 +48,9 @@
     select *
     from ys_user
   </select>
+  <select id="userLogin" parameterType="java.lang.String" resultMap="UserResultMap">
+    select *
+    from ys_user
+    where user_name = #{userName,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR} limit 1
+  </select>
 </mapper>

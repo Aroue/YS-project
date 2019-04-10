@@ -43,4 +43,9 @@ public class UserServiceImpl implements UserService {
     public Boolean deleteUser(Integer id) {
         return this.ysUserMapper.deleteByPrimaryKey(id) > 0;
     }
+
+    @Override
+    public User userLogin(String userName, String password) {
+        return ysUserMapper.userLogin(userName,password);
+    }
 }

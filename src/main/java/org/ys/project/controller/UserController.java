@@ -49,8 +49,11 @@ public class UserController extends APIController {
 
         if (success)
             jsonResult.setMessage(new Message("CM.DB.CREATE_SUCCESS", "用户"));
-        else
+        else{
+            jsonResult.setMessage(new Message("CM.DB.CREATE_FAILED", "用户"));
             throw new BusinessException(new Message("CM.DB.CREATE_FAILED", "用户"));
+        }
+
         return jsonResult;
     }
 
@@ -107,6 +110,7 @@ public class UserController extends APIController {
         if (user != null) {
             jsonResult.setData(userA01DTO);
         } else {
+            jsonResult.setMessage(new Message("CM.DB.NO_RESULT", "用户"));
             throw new BusinessException(new Message("CM.DB.NO_RESULT", "用户"));
         }
         return jsonResult;

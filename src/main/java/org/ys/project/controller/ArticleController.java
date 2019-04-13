@@ -114,4 +114,17 @@ public class ArticleController extends APIController {
         return jsonResult;
     }
 
+    @ApiOperation(value = "获取具体文章", notes = "获取具体文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "/A08")
+    public JSONResult A08(@Valid @RequestBody ArticleA04InputDTO input) throws BusinessException {
+        JSONResult<ArticleBaseDTO> jsonResult = new JSONResult<>();
+        ArticleBaseDTO articleBaseDTO = BeanMapper.map(articleService.getArticle(input.getId()), ArticleBaseDTO.class);
+
+        if (articleBaseDTO != null)
+            jsonResult.setData(articleBaseDTO);
+        else
+            throw new BusinessException(new Message("CM.DB.NO_RESULT", "文章"));
+        return jsonResult;
+    }
+
 }

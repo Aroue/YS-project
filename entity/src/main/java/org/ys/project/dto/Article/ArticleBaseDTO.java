@@ -20,6 +20,8 @@ public class ArticleBaseDTO extends ResponseDTO {
 
     private String content;
 
+    private String delHTMLTagContent;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
 
@@ -83,5 +85,13 @@ public class ArticleBaseDTO extends ResponseDTO {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getDelHTMLTagContent() {
+        return delHTMLTagContent;
+    }
+
+    public void setDelHTMLTagContent(String delHTMLTagContent) {
+        this.delHTMLTagContent = delHTMLTagContent;
     }
 }

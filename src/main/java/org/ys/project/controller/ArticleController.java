@@ -36,6 +36,8 @@ public class ArticleController extends APIController {
         JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
         List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.getAllArticle(),ArticleBaseDTO.class);
 
+        articleBaseDTOList.forEach(articleBaseDTO -> articleBaseDTO.setDelHTMLTagContent(articleService.delHTMLTag(articleBaseDTO.getContent())));
+
         jsonResult.setData(articleBaseDTOList);
         return jsonResult;
     }
@@ -87,6 +89,8 @@ public class ArticleController extends APIController {
         JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
         List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByTypeId(input.getTypeId()),ArticleBaseDTO.class);
 
+        articleBaseDTOList.forEach(articleBaseDTO -> articleBaseDTO.setDelHTMLTagContent(articleService.delHTMLTag(articleBaseDTO.getContent())));
+
         jsonResult.setData(articleBaseDTOList);
         return jsonResult;
     }
@@ -96,6 +100,8 @@ public class ArticleController extends APIController {
     public JSONResult A06(@Valid @RequestBody ArticleA06InputDTO input) {
         JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
         List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByUserId(input.getUserId()),ArticleBaseDTO.class);
+
+        articleBaseDTOList.forEach(articleBaseDTO -> articleBaseDTO.setDelHTMLTagContent(articleService.delHTMLTag(articleBaseDTO.getContent())));
 
         jsonResult.setData(articleBaseDTOList);
         return jsonResult;

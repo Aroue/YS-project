@@ -22,4 +22,5 @@ public interface ArticleService {
 
     List<Article> selectArticleByUserId(Integer id);
 
+    String delHTMLTag(String html);
 }

@@ -11,6 +11,7 @@ import org.ys.project.dto.Comment.CommentBaseDTO;
 import org.ys.project.dto.User.UserA04A05InputDTO;
 import org.ys.project.entity.Comment;
 import org.ys.project.service.CommentService;
+import org.ys.project.service.UserService;
 import org.ys.utils.BeanMapper;
 import org.ys.utils.JSONResult;
 import org.ys.utils.Message;
@@ -27,9 +28,11 @@ import java.util.List;
 public class CommentController extends APIController {
 
     private CommentService commentService;
+    private UserService userService;
 
-    public CommentController(CommentService commentService) {
+    public CommentController(CommentService commentService,UserService userService) {
         this.commentService = commentService;
+        this.userService = userService;
     }
 
     @ApiOperation(value = "获取全部评论", notes = "获取全部评论", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -38,15 +41,23 @@ public class CommentController extends APIController {
         JSONResult<List<CommentBaseDTO>> jsonResult = new JSONResult<>();
         List<CommentBaseDTO> commentBaseDTOList = BeanMapper.mapList(commentService.getAllComment(),CommentBaseDTO.class);
 
+        for (CommentBaseDTO item:commentBaseDTOList) {
+            item.setNickName(userService.getUser(item.getUserId()).getNickName());
+        }
+
         jsonResult.setData(commentBaseDTOList);
         return jsonResult;
     }
 
     @ApiOperation(value = "获取某文章全部评论", notes = "获取某文章全部评论", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @RequestMapping(method = RequestMethod.GET, value = "/A02")
+    @RequestMapping(method = RequestMethod.POST, value = "/A02")
     public JSONResult A02(@Valid @RequestBody CommentA02InputDTO input) {
         JSONResult<List<CommentBaseDTO>> jsonResult = new JSONResult<>();
         List<CommentBaseDTO> commentBaseDTOList = BeanMapper.mapList(commentService.getArticleComments(input.getArticleId()),CommentBaseDTO.class);
+
+        for (CommentBaseDTO item:commentBaseDTOList) {
+            item.setNickName(userService.getUser(item.getUserId()).getNickName());
+        }
 
         jsonResult.setData(commentBaseDTOList);
         return jsonResult;

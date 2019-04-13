@@ -82,7 +82,7 @@ public class ArticleController extends APIController {
     }
 
     @ApiOperation(value = "获取某分类的全部文章", notes = "获取某分类的全部文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @RequestMapping(method = RequestMethod.GET, value = "/A05")
+    @RequestMapping(method = RequestMethod.POST, value = "/A05")
     public JSONResult A05(@Valid @RequestBody ArticleA05InputDTO input) {
         JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
         List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByTypeId(input.getTypeId()),ArticleBaseDTO.class);
@@ -92,7 +92,7 @@ public class ArticleController extends APIController {
     }
 
     @ApiOperation(value = "获取某用户的全部文章", notes = "获取某用户的全部文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @RequestMapping(method = RequestMethod.GET, value = "/A06")
+    @RequestMapping(method = RequestMethod.POST, value = "/A06")
     public JSONResult A06(@Valid @RequestBody ArticleA06InputDTO input) {
         JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
         List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByUserId(input.getUserId()),ArticleBaseDTO.class);

@@ -17,6 +17,8 @@ public class CommentBaseDTO extends ResponseDTO {
 
     private String content;
 
+    private String nickName;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
 
@@ -77,5 +79,13 @@ public class CommentBaseDTO extends ResponseDTO {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 }

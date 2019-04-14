@@ -22,6 +22,9 @@ public class ArticleBaseDTO extends ResponseDTO {
 
     private String delHTMLTagContent;
 
+    // 文章评论数
+    private Integer commentCount;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
 
@@ -93,5 +96,13 @@ public class ArticleBaseDTO extends ResponseDTO {
 
     public void setDelHTMLTagContent(String delHTMLTagContent) {
         this.delHTMLTagContent = delHTMLTagContent;
+    }
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
     }
 }

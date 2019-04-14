@@ -65,6 +65,14 @@ public class CommentBaseDTO extends ResponseDTO {
         this.content = content;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -79,13 +87,5 @@ public class CommentBaseDTO extends ResponseDTO {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
     }
 }

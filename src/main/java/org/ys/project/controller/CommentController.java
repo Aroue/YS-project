@@ -10,6 +10,7 @@ import org.ys.project.dto.Comment.CommentA04InputDTO;
 import org.ys.project.dto.Comment.CommentBaseDTO;
 import org.ys.project.dto.User.UserA04A05InputDTO;
 import org.ys.project.entity.Comment;
+import org.ys.project.entity.User;
 import org.ys.project.service.CommentService;
 import org.ys.project.service.UserService;
 import org.ys.utils.BeanMapper;
@@ -55,9 +56,7 @@ public class CommentController extends APIController {
         JSONResult<List<CommentBaseDTO>> jsonResult = new JSONResult<>();
         List<CommentBaseDTO> commentBaseDTOList = BeanMapper.mapList(commentService.getArticleComments(input.getArticleId()),CommentBaseDTO.class);
 
-        for (CommentBaseDTO item:commentBaseDTOList) {
-            item.setNickName(userService.getUser(item.getUserId()).getNickName());
-        }
+        commentBaseDTOList.forEach(item -> item.setNickName(BeanMapper.map(userService.getUser(item.getUserId()),User.class).getNickName()));
 
         jsonResult.setData(commentBaseDTOList);
         return jsonResult;

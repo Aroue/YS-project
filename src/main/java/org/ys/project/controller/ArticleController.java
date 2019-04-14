@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.ys.project.dto.Article.*;
 import org.ys.project.entity.Article;
 import org.ys.project.service.ArticleService;
+import org.ys.project.service.CommentService;
 import org.ys.utils.BeanMapper;
 import org.ys.utils.JSONResult;
 import org.ys.utils.Message;
@@ -24,21 +25,26 @@ import java.util.List;
 public class ArticleController extends APIController {
 
     private ArticleService articleService;
+    private CommentService commentService;
 
     @Autowired
-    public ArticleController(ArticleService articleService) {
+    public ArticleController(ArticleService articleService, CommentService commentService) {
         this.articleService = articleService;
+        this.commentService = commentService;
     }
 
     @ApiOperation(value = "获取全部文章", notes = "获取全部文章", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(method = RequestMethod.GET, value = "/A01")
     public JSONResult A01() {
         JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
-        List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.getAllArticle(),ArticleBaseDTO.class);
+        List<ArticleBaseDTO> articleBaseDTOS = BeanMapper.mapList(articleService.getAllArticle(), ArticleBaseDTO.class);
 
-        articleBaseDTOList.forEach(articleBaseDTO -> articleBaseDTO.setDelHTMLTagContent(articleService.delHTMLTag(articleBaseDTO.getContent())));
+        articleBaseDTOS.forEach(articleBaseDTO -> {
+            articleBaseDTO.setDelHTMLTagContent(articleService.delHTMLTag(articleBaseDTO.getContent()));
+            articleBaseDTO.setCommentCount(commentService.getArticleComments(articleBaseDTO.getId()).size());
+        });
 
-        jsonResult.setData(articleBaseDTOList);
+        jsonResult.setData(articleBaseDTOS);
         return jsonResult;
     }
 
@@ -87,7 +93,7 @@ public class ArticleController extends APIController {
     @RequestMapping(method = RequestMethod.POST, value = "/A05")
     public JSONResult A05(@Valid @RequestBody ArticleA05InputDTO input) {
         JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
-        List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByTypeId(input.getTypeId()),ArticleBaseDTO.class);
+        List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByTypeId(input.getTypeId()), ArticleBaseDTO.class);
 
         articleBaseDTOList.forEach(articleBaseDTO -> articleBaseDTO.setDelHTMLTagContent(articleService.delHTMLTag(articleBaseDTO.getContent())));
 
@@ -99,9 +105,12 @@ public class ArticleController extends APIController {
     @RequestMapping(method = RequestMethod.POST, value = "/A06")
     public JSONResult A06(@Valid @RequestBody ArticleA06InputDTO input) {
         JSONResult<List<ArticleBaseDTO>> jsonResult = new JSONResult<>();
-        List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByUserId(input.getUserId()),ArticleBaseDTO.class);
+        List<ArticleBaseDTO> articleBaseDTOList = BeanMapper.mapList(articleService.selectArticleByUserId(input.getUserId()), ArticleBaseDTO.class);
 
-        articleBaseDTOList.forEach(articleBaseDTO -> articleBaseDTO.setDelHTMLTagContent(articleService.delHTMLTag(articleBaseDTO.getContent())));
+        articleBaseDTOList.forEach(articleBaseDTO -> {
+            articleBaseDTO.setDelHTMLTagContent(articleService.delHTMLTag(articleBaseDTO.getContent()));
+            articleBaseDTO.setCommentCount(commentService.getArticleComments(articleBaseDTO.getId()).size());
+        });
 
         jsonResult.setData(articleBaseDTOList);
         return jsonResult;

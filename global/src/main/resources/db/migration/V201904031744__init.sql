@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS `ys_user`;
 CREATE TABLE `ys_user`
 (
   `id`                     int(11)      NOT NULL AUTO_INCREMENT,
-  `user_name`              varchar(255) NOT NULL COMMENT '用户名.',
+  `user_name`              varchar(255) NOT NULL UNIQUE COMMENT '用户名.',
   `nick_name`              varchar(20)  NOT NULL COMMENT '昵称.',
   `password`               varchar(20)  NOT NULL COMMENT '密码.',
   `phone`                  varchar(20)  COMMENT '电话.',
@@ -26,11 +26,10 @@ CREATE TABLE `ys_article`
   `created_at`             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `type_id` (`type_id`),
-  KEY `user_id` (`user_id`)
+  INDEX `unique_user_id` (`user_id`),
+  FOREIGN KEY (`user_id`) REFERENCES ys_user(`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='文章表';
-
 
 DROP TABLE IF EXISTS `ys_article_type`;
 CREATE TABLE `ys_article_type`
@@ -39,7 +38,7 @@ CREATE TABLE `ys_article_type`
   `title`                  varchar(255) NOT NULL COMMENT '类型名称.',
   `created_at`             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='文章类型表';
 
@@ -55,8 +54,10 @@ CREATE TABLE `ys_comment`
   `created_at`             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `article_id` (`article_id`),
-  KEY `user_id` (`user_id`)
+  INDEX `unique_article_id` (`article_id`),
+  INDEX `unique_user_id` (`user_id`),
+  FOREIGN KEY `article_id` (`article_id`) REFERENCES  ys_article(`id`)  ON  DELETE  CASCADE,
+  FOREIGN KEY `user_id` (`user_id`) REFERENCES  ys_user(`id`)  ON  DELETE  CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='评论表';
 
